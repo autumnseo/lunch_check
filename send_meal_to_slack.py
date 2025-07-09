@@ -22,6 +22,7 @@ def main():
         # Slack Bot Token 및 채널명 환경 변수
         slack_bot_token = os.getenv("SLACK_BOT_TOKEN")
         slack_channel = "#점메방"
+        slack_channel = "#airflow-bot"
         
         if not slack_bot_token:
             logger.error("SLACK_BOT_TOKEN 환경 변수가 설정되지 않았습니다.")
