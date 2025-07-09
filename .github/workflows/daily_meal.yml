@@ -1,0 +1,31 @@
+name: Daily Meal Notification
+
+on:
+  schedule:
+    # 매일 오전 7시 KST (UTC 22:00)
+    - cron: '0 22 * * *'
+  workflow_dispatch: # 수동 실행 가능
+
+jobs:
+  send-meal:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests python-dotenv
+        
+    - name: Send meal to Slack
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        STORE_IDX: ${{ secrets.STORE_IDX }}
+      run: python send_meal_to_slack.py 

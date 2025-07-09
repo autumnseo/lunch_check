@@ -28,9 +28,8 @@ lunch_menu/
 
 GitHub 리포지토리의 Settings > Secrets and variables > Actions에서 다음 시크릿을 설정하세요:
 
-- `CJ_API_KEY`: CJ Freshmeal API 키
 - `SLACK_WEBHOOK_URL`: Slack Webhook URL
-- `SCHOOL_CODE`: 학교 코드
+- `STORE_IDX`: CJ Freshmeal 매장 인덱스 (기본값: 6655)
 
 ### 2. Slack Webhook 설정
 
@@ -39,11 +38,11 @@ GitHub 리포지토리의 Settings > Secrets and variables > Actions에서 다�
 3. Webhook URL 생성 및 복사
 4. GitHub Secrets에 `SLACK_WEBHOOK_URL`로 저장
 
-### 3. CJ Freshmeal API 키 발급
+### 3. CJ Freshmeal 매장 인덱스 확인
 
-1. CJ Freshmeal 개발자 포털에서 API 키 발급
-2. 학교 코드 확인
-3. GitHub Secrets에 저장
+1. CJ Freshmeal 웹사이트에서 해당 학교/기관의 매장 인덱스 확인
+2. 기본값은 6655이며, 필요시 다른 값으로 변경
+3. GitHub Secrets에 `STORE_IDX`로 저장
 
 ## 📅 실행 스케줄
 
@@ -58,9 +57,8 @@ GitHub 리포지토리의 Settings > Secrets and variables > Actions에서 다�
 pip install -r requirements.txt
 
 # 환경 변수 설정
-export CJ_API_KEY="your_api_key"
 export SLACK_WEBHOOK_URL="your_webhook_url"
-export SCHOOL_CODE="your_school_code"
+export STORE_IDX="6655"  # 필요시 다른 값으로 변경
 
 # 스크립트 실행
 python send_meal_to_slack.py
@@ -97,15 +95,14 @@ python send_meal_to_slack.py
 
 - **Python 3.11**: 메인 스크립트 언어
 - **GitHub Actions**: 자동화 및 스케줄링
-- **CJ Freshmeal API**: 급식 정보 조회
+- **CJ Freshmeal API**: 급식 정보 조회 (공개 API)
 - **Slack Webhook**: 알림 전송
 - **requests**: HTTP 클라이언트
-- **python-dotenv**: 환경 변수 관리
 
 ## 🔍 문제 해결
 
 ### API 호출 실패
-- API 키와 학교 코드 확인
+- 매장 인덱스(STORE_IDX) 확인
 - 네트워크 연결 상태 확인
 - CJ Freshmeal 서비스 상태 확인
 
