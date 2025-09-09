@@ -2,7 +2,7 @@ name: Daily Meal Notification
 
 on:
   schedule:
-    # 평일 오전 9시 KST (UTC 00:0) - 토요일, 일요일 제외
+    # 평일 오전 9시 KST (UTC 00:0) - 토요일, 일요일 제외함
     - cron: '00 00 * * 1-5'
   workflow_dispatch: # 수동 실행 가능
 
